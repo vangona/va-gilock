@@ -3,6 +3,8 @@
 @import "_animation";
 @import "_variables";
 
+@import url("https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@1,400;1,500;1,700&display=swap");
+
 html {
   scroll-behavior: smooth;
 }
@@ -12,6 +14,7 @@ html {
 }
 
 main {
+  font-family: "Libre Bodoni", serif;
   width: 100%;
   height: 100%;
   color: $mainFontColor;
@@ -23,7 +26,7 @@ article {
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   padding: 1rem;
 
   @include horizontalMode {
@@ -53,7 +56,7 @@ article .img-wrapper {
     height: auto;
 
     @include horizontalMode {
-      height: 100vh;
+      height: calc(var(--vh, 1vh) * 100);
       width: auto;
     }
   }
@@ -87,7 +90,6 @@ article .img-wrapper {
 
   margin: -2rem 1rem 0 1rem;
 
-  font-family: serif;
   font-style: italic;
   font-size: 3rem;
 
@@ -111,13 +113,12 @@ article .img-wrapper {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
 
   .program__title {
     align-self: center;
     margin-top: 1rem;
 
-    font-family: serif;
     font-weight: bold;
     font-size: 1.5rem;
   }
