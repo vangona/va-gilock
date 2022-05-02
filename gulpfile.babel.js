@@ -25,6 +25,11 @@ const routes = {
     src: "src/img/*",
     dest: "build/img",
   },
+  ts: {
+    watch: "src/ts/**/*.ts",
+    src: "src/ts/main.ts",
+    dest: "src/js",
+  },
   js: {
     watch: "src/js/**/*.js",
     src: "src/js/main.js",
@@ -57,6 +62,9 @@ const js = () =>
     )
     .pipe(gulp.dest(routes.js.dest));
 
+const img = () =>
+  gulp.src(routes.img.src).pipe(image()).pipe(gulp.dest(routes.img.dest));
+
 const webserver = () =>
   gulp.src("build").pipe(ws({ livereload: true, open: true }));
 
@@ -66,7 +74,7 @@ const watch = () => {
   gulp.watch(routes.js.watch, js);
 };
 
-const prepare = gulp.series([clean]);
+const prepare = gulp.series([clean, img]);
 
 const assets = gulp.series([html, styles, js]);
 
