@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "gulp dev",
-    "build": "gulp build --output public"
+    "build": "gulp build --output build"
   },
   "author": "vangona",
   "license": "ISC",
