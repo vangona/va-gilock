@@ -1,9 +1,9 @@
-import { scrollEvent, moveToLower } from "./scrollEvent";
+import { mouseWheelEvent, moveToLower, scrollEvent } from "./scrollEvents";
 
-window.addEventListener("mousewheel", scrollEvent);
+window.addEventListener("mousewheel", mouseWheelEvent);
+window.addEventListener("scroll", scrollEvent);
 
 const lowerArrows = document.querySelectorAll(".arrow-down");
-console.log(lowerArrows);
 lowerArrows.forEach((lowerArrow) => {
   lowerArrow.addEventListener("click", moveToLower);
 });
