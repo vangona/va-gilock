@@ -4,6 +4,7 @@ export const screenSize = {
 };
 
 setScreenSize();
+window.addEventListener("resize", setScreenSize);
 
 function setScreenSize() {
   screenSize.vw =

@@ -2,30 +2,28 @@ import { screenSize } from "./getScreenSize";
 
 let lastScrollY = 0;
 
-export const scrollEvent = (e) => {
-  const scrollY = window.scrollY;
-
-  const scrollGap = scrollY - lastScrollY;
-
-  lastScrollY = scrollY;
-
-  if (Math.abs(scrollGap) > 5 && scrollY > 10) {
-    if (scrollGap > 10) {
-      console.log(scrollGap);
-      moveToProfile();
-    }
-
-    if (scrollGap < -5 && scrollY < screenSize.vh * 100 - 10) {
-      console.log(scrollGap);
-      moveToProgram();
-    }
-  }
+export const moveToUpper = () => {
+  window.scrollTo({
+    top: window.scrollY - screenSize.vh * 100,
+    behavior: "smooth",
+  });
 };
 
-function moveToProfile() {
-  window.scrollTo({ top: screenSize.vh * 100, behavior: "smooth" });
-}
+export const moveToLower = () => {
+  window.scrollTo({
+    top: window.scrollY + screenSize.vh * 100,
+    behavior: "smooth",
+  });
+};
 
-function moveToProgram() {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
+export const scrollEvent = (e) => {
+  console.log(e.deltaY);
+
+  if (e.deltaY < 0) {
+    moveToUpper();
+  }
+
+  if (e.deltaY > 0) {
+    moveToLower();
+  }
+};

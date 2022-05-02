@@ -1,5 +1,6 @@
 @import "_reset";
 @import "_responsive";
+@import "_animation";
 @import "_variables";
 
 html {
@@ -11,59 +12,88 @@ html {
 }
 
 main {
-  position: relative;
   width: 100%;
   height: 100%;
   color: $mainFontColor;
-  background-color: $mainBgColor;
+
+  @extend %mainBgColor;
 }
 
 article {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 100vh;
   padding: 1rem;
+
+  @include horizontalMode {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0;
+  }
 }
 
 article .img-wrapper {
   display: flex;
+  position: relative;
   width: 100%;
   height: auto;
+
+  margin-top: 5rem;
+
+  @extend %defaultBoxShadow;
+
+  @include horizontalMode {
+    width: auto;
+    height: 100%;
+  }
 
   img {
     width: 100%;
     height: auto;
+
+    @include horizontalMode {
+      height: 100vh;
+      width: auto;
+    }
   }
 }
 
-.hero {
-  display: flex;
-  justify-content: center;
+// 메인
+
+.article__hero {
+  align-items: center;
 }
 
-.hero .logo {
+.article__hero .logo {
   position: absolute;
   top: 1rem;
   right: 1rem;
   width: 2.2rem;
   height: 2rem;
+  filter: invert(100%);
 
-  img {
-    width: 100%;
-    height: 100%;
+  @include horizontalMode {
+    left: 1rem;
   }
 }
 
-.hero .hero__title {
+.article__hero .hero__title {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 
-  margin: -2rem 0 0 1rem;
+  width: 100%;
+
+  margin: -2rem 1rem 0 1rem;
 
   font-family: serif;
   font-style: italic;
   font-size: 3rem;
+
+  z-index: 3;
+
+  @extend %animationLeftSlideIn;
 
   span:first-child {
     align-self: flex-start;
@@ -74,33 +104,117 @@ article .img-wrapper {
   }
 }
 
-.article__bottom {
+// 프로그램 소개
+
+.article__program {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
+  height: 100vh;
+
+  .program__title {
+    align-self: center;
+    margin-top: 1rem;
+
+    font-family: serif;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+
+  .program__img {
+    margin-top: 1rem;
+  }
+
+  h4 {
+    align-self: center;
+    margin: 2rem;
+    font-size: 2rem;
+  }
 
   .program__list {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
 
-    h4 {
-      align-self: center;
-      margin: 1rem;
-      font-size: 2rem;
+    width: 100%;
+    height: 50vh;
+    overflow: scroll;
+
+    font-size: 0.9rem;
+
+    & > li {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
     }
 
-    li {
-      display: flex;
-      align-items: center;
-      word-break: keep-all;
+    .music__title {
+      align-self: flex-start;
+      width: 70%;
 
-      .line-row {
-        width: 30vw;
-        height: 1px;
-        margin: 1rem;
-        background-color: white;
+      margin-bottom: 1rem;
+
+      font-size: 1rem;
+
+      line-height: 140%;
+    }
+
+    .music__composer {
+      align-self: flex-end;
+      font-style: italic;
+    }
+
+    line-height: 140%;
+
+    .music__chapter {
+      list-style-position: inside;
+      list-style-type: upper-roman;
+    }
+  }
+}
+
+.article__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .contact {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    width: 80%;
+
+    a {
+      display: flex;
+      gap: 1rem;
+
+      text-decoration: none;
+      color: white;
+
+      font-size: 1.5rem;
+
+      &:hover {
+        cursor: pointer;
       }
     }
+  }
+}
+
+// 버튼
+
+.arrow-down {
+  position: absolute;
+  bottom: 2rem;
+
+  font-size: 1.5rem;
+
+  transition: 0.5s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    transform: translateY(5px);
   }
 }

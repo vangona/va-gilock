@@ -1,7 +1,8 @@
 // breakpoints
-$mobile: 767px;
-$tablet: 1023px;
-$desktop: 1024px;
+$mobile: 600px;
+$tablet: 900px;
+$tablet-horizontal: 1200px;
+$desktop: 1600px;
 
 // responsive mixin
 @mixin mobile {
@@ -22,11 +23,26 @@ $desktop: 1024px;
   }
 }
 
-@mixin desktop {
-  @media (min-width: $desktop) {
+@mixin tablet-horizontal {
+  @media (min-width: $tablet) and (max-width: $tablet-horizontal) {
     :root {
       font-size: 16px;
     }
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $desktop) {
+    :root {
+      font-size: 18px;
+    }
+    @content;
+  }
+}
+
+@mixin horizontalMode {
+  @media (orientation: landscape) {
     @content;
   }
 }
