@@ -1,8 +1,15 @@
 import { setScreenSize } from "./getScreenSize";
 import { map } from "./kakaoMap";
-import { mouseWheelEvent, moveNextPage, scrollEvent } from "./scrollEvents";
+import {
+  initTouchEvent,
+  mouseWheelEvent,
+  moveNextPage,
+  scrollEvent,
+} from "./scrollEvents";
 
 window.addEventListener("resize", setScreenSize);
+
+initTouchEvent();
 window.addEventListener("mousewheel", mouseWheelEvent);
 window.addEventListener("scroll", scrollEvent);
 

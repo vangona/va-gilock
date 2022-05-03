@@ -29,7 +29,77 @@ export const moveNextPage = (e) => {
   });
 };
 
-export const mobileScrollEvent = (e) => {};
+const touchScrollEvent = (currentScrollY, direction) => {
+  if (direction === "up") {
+    if (currentScrollY > FOURTH_PAGE) {
+      moveToUpper(THIRD_PAGE);
+    } else if (currentScrollY > THIRD_PAGE) {
+      moveToUpper(SECOND_PAGE);
+    } else if (currentScrollY > SECOND_PAGE) {
+      moveToUpper(FIRST_PAGE);
+    }
+  }
+
+  if (direction === "down") {
+    if (currentScrollY < FIRST_PAGE) {
+      moveToLower(FIRST_PAGE);
+    } else if (currentScrollY < SECOND_PAGE) {
+      moveToLower(SECOND_PAGE);
+    } else if (currentScrollY < THIRD_PAGE) {
+      moveToLower(THIRD_PAGE);
+    } else if (currentScrollY < FOURTH_PAGE) {
+      moveToLower(FOURTH_PAGE);
+    }
+  }
+};
+
+let touchInitialX = null;
+let touchInitialY = null;
+const touchStartEvent = (e) => {
+  touchInitialX = `${
+    e.changedTouches ? e.changedTouches[0].clientX : e.clientX
+  }`;
+  touchInitialY = `${
+    e.changedTouches ? e.changedTouches[0].clientY : e.clientY
+  }`;
+};
+
+const touchEndEvent = (e) => {
+  if (touchInitialX !== null && touchInitialY !== null) {
+    const currentX = `${
+      e.changedTouches ? e.changedTouches[0].clientX : e.clientX
+    }`;
+    const currentY = `${
+      e.changedTouches ? e.changedTouches[0].clientY : e.clientY
+    }`;
+
+    let diffX = touchInitialX - currentX;
+    let diffY = touchInitialY - currentY;
+
+    if (Math.abs(diffX) < Math.abs(diffY) && Math.abs(diffY) > 10) {
+      if (diffY > 0) {
+        touchScrollEvent(e.changedTouches[0].pageY, "down");
+      } else {
+        touchScrollEvent(e.changedTouches[0].pageY, "up");
+      }
+    }
+
+    touchInitialX = null;
+    touchInitialY = null;
+  }
+};
+
+export const initTouchEvent = () => {
+  window.addEventListener(
+    "touchmove",
+    (e) => {
+      e.preventDefault();
+    },
+    { passive: false }
+  );
+  window.addEventListener("touchstart", touchStartEvent);
+  window.addEventListener("touchend", touchEndEvent);
+};
 
 export const mouseWheelEvent = (e) => {
   const currentScrollY = Math.floor(window.scrollY);
