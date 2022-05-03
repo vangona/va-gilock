@@ -11,6 +11,10 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <script
+      type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d38389df76ef3e89711b89ce31cbb892"
+    ></script>
     <link rel="stylesheet" href="css/style.css" />
     <title>va-gilock</title>
   </head>
@@ -31,24 +35,27 @@
       </article>
 
       <article class="article__program">
-        <div class="program__upper">
-          <div class="program__hero">
-            <h3 class="program__title">Viola Recital</h3>
-            <div class="program__img img-wrapper">
-              <img src="../img/profile-horizontal.jpg" />
-            </div>
+        <div class="program__hero">
+          <div class="program__img img-wrapper">
+            <img src="../img/profile-horizontal.jpg" />
           </div>
+          <h3 class="program__title">Woo Gilock Viola Recital</h3>
+        </div>
+        <div class="program__upper">
           <div class="program__time-place">
-            <h4>위치 및 시간</h4>
             <ul>
-              <li>위치</li>
-              <li>시간</li>
+              <li class="program__time">2022.05.16. MON 7PM</li>
+              <li class="program__place">
+                ehwa w. university recital hall
+                <div id="map" style="width: 100%; height: 30vh"></div>
+              </li>
             </ul>
           </div>
         </div>
         <div class="program__lower">
           <h4>Program</h4>
           <ul class="program__list">
+            <li class="program__accompanist">piano. Choo Wonju</li>
             <li>
               <span class="music__title">Romance for Viloa & Piano Op.85</span>
               <span class="music__composer">- Max Bruch(1838-1920) </span>
@@ -81,7 +88,7 @@
         </div>
       </article>
 
-      <article class="article__info">
+      <footer>
         <div class="info__upper"></div>
         <div class="info__lower">
           <div class="contact">
@@ -98,7 +105,7 @@
             </a>
           </div>
         </div>
-      </article>
+      </footer>
     </main>
     <script src="./js/main.js"></script>
   </body>

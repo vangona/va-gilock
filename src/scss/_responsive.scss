@@ -41,6 +41,12 @@ $desktop: 1600px;
   }
 }
 
+@mixin small-height {
+  @media (max-height: 680px) {
+    @content;
+  }
+}
+
 @mixin horizontalMode {
   @media (orientation: landscape) {
     @content;
