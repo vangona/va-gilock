@@ -1,4 +1,3 @@
-import { setScreenSize } from "./getScreenSize";
 import { map } from "./kakaoMap";
 import {
   initTouchEvent,
@@ -7,9 +6,14 @@ import {
   scrollEvent,
 } from "./scrollEvents";
 
-window.addEventListener("resize", setScreenSize);
+if (
+  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  )
+) {
+  initTouchEvent();
+}
 
-initTouchEvent();
 window.addEventListener("mousewheel", mouseWheelEvent);
 window.addEventListener("scroll", scrollEvent);
 

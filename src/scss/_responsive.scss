@@ -35,7 +35,7 @@ $desktop: 1600px;
 @mixin desktop {
   @media (min-width: $desktop) {
     :root {
-      font-size: 40px;
+      font-size: 18px;
     }
     @content;
   }
