@@ -6,7 +6,7 @@ const marker = new kakao.maps.Marker({
 
 const mapOption = {
   center: new kakao.maps.LatLng(37.56111192802683, 126.94927186218958),
-  level: 3,
+  level: 6,
   marker,
 };
 

@@ -5,10 +5,7 @@ export const screenSize = {
   vmax: 0,
 };
 
-setScreenSize();
-window.addEventListener("resize", setScreenSize);
-
-function setScreenSize() {
+export const setScreenSize = () => {
   screenSize.vw =
     Math.max(
       document.documentElement.clientWidth || 0,
@@ -32,4 +29,7 @@ function setScreenSize() {
   document.documentElement.style.setProperty("--vmin", `${screenSize.vmin}px`);
 
   document.documentElement.style.setProperty("--vmax", `${screenSize.vmax}px`);
-}
+};
+
+setScreenSize();
+window.addEventListener("resize", setScreenSize);
